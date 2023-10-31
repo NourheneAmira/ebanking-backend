@@ -12,18 +12,21 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@Inheritance(strategy =InheritanceType.SINGLE_TABLE )
+@DiscriminatorColumn(name="TYPE",length = 4)
 public class BankAccount implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
     private double balance;
     private Date createdAt;
+    @Enumerated(EnumType.STRING)
     private AccountStatus status;
     @ManyToOne
     private Customer customer;
     // cad dans la classe accountoperation il ya un cle etrangere qui s appelle bankaccount
     //cette annotation il est mapper/representer dans la table acountoperation avec la cle etrangere bank ccount
-    @OneToMany(mappedBy = "bankAccount")
+    @OneToMany(mappedBy = "bankAccount",fetch = FetchType.LAZY)
     private List<AccountOperation> accountOperations;
 
 
