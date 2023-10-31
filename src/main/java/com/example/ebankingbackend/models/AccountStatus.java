@@ -1,2 +1,5 @@
-package com.example.ebankingbackend.models;public enum AccountStatus {
+package com.example.ebankingbackend.models;
+
+public enum AccountStatus {
+    CREATED,ACTIVATED,SUSPENDED
 }
